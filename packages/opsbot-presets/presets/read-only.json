@@ -1,0 +1,22 @@
+{
+  "$schema": "../schemas/opsbot-config.schema.json",
+  "version": 1,
+  "safety": {
+    "mode": "read-only",
+    "planTimeoutSec": 300
+  },
+  "skills": {
+    "allowBundled": ["docker", "kubernetes", "terraform", "github"]
+  },
+  "channels": {
+    "tui": { "enabled": true },
+    "telegram": { "enabled": false },
+    "slack": { "enabled": false },
+    "teams": { "enabled": false }
+  },
+  "exec": {
+    "security": "allowlist",
+    "onMiss": "deny",
+    "safeBins": ["jq", "yq", "grep", "awk", "sed", "curl", "cat", "head", "tail"]
+  }
+}

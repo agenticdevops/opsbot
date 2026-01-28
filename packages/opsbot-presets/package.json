@@ -1,0 +1,31 @@
+{
+  "name": "@opsbot/presets",
+  "version": "0.1.0",
+  "description": "Preconfigured profiles for opsbot (read-only, plan-mode, gitops)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./presets/*": "./presets/*"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@opsbot/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist",
+    "presets"
+  ]
+}

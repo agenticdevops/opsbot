@@ -1,0 +1,53 @@
+{
+  "$schema": "../schemas/opsbot-config.schema.json",
+  "version": 1,
+  "safety": {
+    "mode": "plan-mode",
+    "planTimeoutSec": 600,
+    "alwaysRequireApproval": ["delete", "destroy", "terminate", "drop", "rm -rf", "apply", "create"],
+    "forwardApprovals": {
+      "enabled": true,
+      "channel": "slack",
+      "target": "#ops-approvals"
+    },
+    "autoApproveLowImpact": false
+  },
+  "gitops": {
+    "enabled": true,
+    "repository": "",
+    "branch": "main",
+    "prBranch": "opsbot/changes",
+    "autoMerge": false,
+    "requireReviewers": 1
+  },
+  "skills": {
+    "allowBundled": ["docker", "kubernetes", "terraform", "github", "argocd", "helm"],
+    "entries": {
+      "kubernetes": {
+        "enabled": true,
+        "config": {
+          "preferGitOps": true,
+          "directApplyAllowed": false
+        }
+      },
+      "terraform": {
+        "enabled": true,
+        "config": {
+          "preferGitOps": true,
+          "directApplyAllowed": false
+        }
+      }
+    }
+  },
+  "channels": {
+    "tui": { "enabled": true },
+    "telegram": { "enabled": true },
+    "slack": { "enabled": true },
+    "teams": { "enabled": false }
+  },
+  "exec": {
+    "security": "allowlist",
+    "onMiss": "deny",
+    "safeBins": ["jq", "yq", "grep", "awk", "sed", "curl", "cat", "head", "tail"]
+  }
+}
