@@ -5,79 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2026-01-28
+
+### Changed
+
+- **Major Architecture Pivot**: Opsbot is now a preset pack for Clawdbot instead of a standalone application
+- Removed custom server, safety layer, and Telegram integration (use Clawdbot's built-in features)
+- Simplified to just presets + setup script
 
 ### Added
 
-- **Telegram Bot Integration**
-  - Full bot implementation with TelegramBot class
-  - Command handlers (/plans, /approve, /reject, /execute, /rollback, /health)
-  - Webhook endpoint for receiving updates
-  - Setup endpoint for configuring webhook URL
+- **Safety Presets** for Clawdbot:
+  - `devops-safe.json` - Read-only mode with strict allowlist
+  - `devops-standard.json` - Approval required for mutations (recommended)
+  - `devops-full.json` - Full access (dangerous!)
 
-- **Heartbeat & Monitoring**
-  - HeartbeatScheduler for automated status reports
-  - System stats collection (CPU, memory, disk, uptime)
-  - Docker stats collection (containers, images, networks)
-  - Kubernetes stats collection (nodes, pods, deployments)
-  - Heartbeat API endpoints (GET, trigger, preview)
-  - Configurable heartbeat intervals
+- **Setup Script** (`scripts/setup.sh`):
+  - Installs Clawdbot if not present
+  - Clones and symlinks agentic-ops-skills
+  - Applies selected safety preset
+  - Interactive safety mode selection
 
-- **Docusaurus Documentation Site**
-  - Getting Started: 5-minute setup, quickstart, installation, configuration
-  - User Guide: commands, safety modes, approval workflow, Telegram bot
-  - Deployment: Docker, Kubernetes, environment variables
-  - Developers: architecture, API reference, skills, contributing
+### Removed
 
-- **Additional DevOps Skills**
-  - k8s-debug - Kubernetes debugging and troubleshooting
-  - aws-ops - AWS operations (EC2, S3, Lambda, ECS)
-  - incident-response - On-call and incident management
-  - system-health - System monitoring and diagnostics
-  - log-analysis - Log searching and analysis
+- `packages/*` - Custom contracts, safety layer, skills (use Clawdbot's)
+- `apps/*` - Custom server and CLI (use Clawdbot)
+- `deploy/*` - Docker/Kubernetes manifests (just run Clawdbot)
 
-- Execution engine integration from devops-execution-engine
-  - Plan generator with structured YAML-based plans
-  - Approval handler with risk-based workflow
-  - Executor with timeout handling and rollback support
-  - Audit logger with JSONL append-only trail
-- Execution plan schemas in @opsbot/contracts
-- Docker deployment support
-  - Multi-stage Dockerfile with optional CLI tool installation
-  - docker-compose.yml for local development
-- Kubernetes deployment manifests
-  - Namespace, ConfigMap, Secret, Deployment, Service
-  - RBAC with read-only ClusterRole (safe default)
-  - PersistentVolumeClaims for data and memory
-  - Kustomization for easy customization
-- Elysia server with REST API
-  - Health check endpoints (/health, /health/ready, /health/live)
-  - Plans API (create, list, get, delete)
-  - Approvals API (approve, reject, execute, rollback)
-  - Webhooks for Slack and Telegram integration
-  - Heartbeat API (status reports, trigger, preview)
-  - Audit log API
+### Deprecated
+
+- Standalone version archived to `opsbot-standalone` branch
 
 ## [0.1.0] - 2026-01-28
 
 ### Added
 
-- Initial project structure with monorepo setup
+- Initial standalone project structure with monorepo setup
 - `@opsbot/contracts` - Zod schemas for safety, config, and skills
 - `@opsbot/skills` - DevOps skills: docker, kubernetes, terraform, github
-- `@opsbot/safety` - Command classifier and plan generator for safety layer
+- `@opsbot/safety` - Command classifier, plan generator, approval handler
 - `@opsbot/presets` - Preconfigured profiles: read-only, plan-mode, gitops
 - `@opsbot/cli` - CLI with setup wizard and doctor commands
-- Safety modes: read-only, plan-mode, full-access
-- Plan → review → approve workflow for mutations
-- Command classification for read vs mutating operations
+- Elysia server with REST API
+- Telegram bot integration
+- Docker and Kubernetes deployment manifests
+- Docusaurus documentation site
 
-### Skills
+**Note**: v0.1.0 is preserved in the `opsbot-standalone` branch.
 
-- **docker** - Container lifecycle, logs, exec, build, prune
-- **kubernetes** - Pod management, logs, apply, scale, rollout
-- **terraform** - Plan, apply, destroy, state management
-- **github** - PRs, issues, releases, actions, workflows
-
-[Unreleased]: https://github.com/agenticdevops/opsbot/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/agenticdevops/opsbot/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/agenticdevops/opsbot/releases/tag/v0.1.0

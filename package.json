@@ -1,44 +1,24 @@
 {
   "name": "opsbot",
-  "version": "0.1.0",
-  "description": "DevOps/SRE assistant built on clawdbot - safety-first infrastructure automation",
+  "version": "0.2.0",
+  "description": "DevOps preset pack for Clawdbot - safety-first infrastructure automation",
   "private": true,
-  "type": "module",
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
   "scripts": {
-    "build": "bun run --filter '*' build",
-    "dev": "bun run --filter '@opsbot/cli' dev",
-    "test": "bun run --filter '*' test",
-    "lint": "bun run --filter '*' lint",
-    "typecheck": "bun run --filter '*' typecheck",
-    "clean": "bun run --filter '*' clean"
-  },
-  "dependencies": {
-    "moltbot": "^2026.1.27-beta.1"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "^5.7.0"
-  },
-  "engines": {
-    "node": ">=22.0.0"
+    "setup": "./scripts/setup.sh"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/opsflow-sh/opsbot"
+    "url": "https://github.com/agenticdevops/opsbot"
   },
   "license": "MIT",
   "keywords": [
     "devops",
     "sre",
-    "automation",
+    "clawdbot",
+    "chatops",
     "kubernetes",
     "docker",
     "terraform",
-    "chatops",
     "ai-assistant"
   ]
 }

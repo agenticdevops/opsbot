@@ -1,0 +1,41 @@
+{
+  "$schema": "https://clawdbot.dev/schemas/config.json",
+  "_comment": "Opsbot DevOps Full Access Preset - All operations allowed (DANGEROUS!)",
+  "_warning": "This preset allows ALL commands without approval. Use with caution!",
+
+  "agents": {
+    "defaults": {
+      "tools": {
+        "exec": {
+          "security": "full",
+          "ask": "off"
+        }
+      }
+    }
+  },
+
+  "skills": {
+    "entries": {
+      "k8s-deploy": { "enabled": true },
+      "k8s-debug": { "enabled": true },
+      "docker-ops": { "enabled": true },
+      "aws-ops": { "enabled": true },
+      "terraform-workflow": { "enabled": true },
+      "incident-response": { "enabled": true },
+      "system-health": { "enabled": true },
+      "log-analysis": { "enabled": true },
+      "argocd-gitops": { "enabled": true },
+      "cost-optimization": { "enabled": true },
+      "git-workflow": { "enabled": true }
+    }
+  },
+
+  "channels": {
+    "telegram": {
+      "enabled": true
+    },
+    "slack": {
+      "enabled": true
+    }
+  }
+}

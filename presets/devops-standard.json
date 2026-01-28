@@ -1,0 +1,92 @@
+{
+  "$schema": "https://clawdbot.dev/schemas/config.json",
+  "_comment": "Opsbot DevOps Standard Preset - Read operations auto-approved, mutations require approval",
+
+  "agents": {
+    "defaults": {
+      "tools": {
+        "exec": {
+          "security": "allowlist",
+          "ask": "on-miss",
+          "safeBins": ["jq", "yq", "grep", "awk", "sed", "curl", "cat", "head", "tail", "wc", "sort", "uniq", "cut", "tr"],
+          "allowlist": [
+            { "pattern": "^kubectl get ", "comment": "Read Kubernetes resources" },
+            { "pattern": "^kubectl describe ", "comment": "Describe Kubernetes resources" },
+            { "pattern": "^kubectl logs ", "comment": "View pod logs" },
+            { "pattern": "^kubectl top ", "comment": "Resource usage" },
+            { "pattern": "^kubectl config ", "comment": "Config operations" },
+            { "pattern": "^kubectl version", "comment": "Version info" },
+            { "pattern": "^kubectl cluster-info", "comment": "Cluster info" },
+            { "pattern": "^kubectl api-resources", "comment": "API resources" },
+            { "pattern": "^kubectl explain ", "comment": "API documentation" },
+            { "pattern": "^docker ps", "comment": "List containers" },
+            { "pattern": "^docker images", "comment": "List images" },
+            { "pattern": "^docker logs ", "comment": "View container logs" },
+            { "pattern": "^docker inspect ", "comment": "Inspect containers/images" },
+            { "pattern": "^docker stats", "comment": "Container stats" },
+            { "pattern": "^docker version", "comment": "Docker version" },
+            { "pattern": "^docker info", "comment": "Docker info" },
+            { "pattern": "^docker network ls", "comment": "List networks" },
+            { "pattern": "^docker volume ls", "comment": "List volumes" },
+            { "pattern": "^terraform plan", "comment": "Plan changes" },
+            { "pattern": "^terraform show", "comment": "Show state" },
+            { "pattern": "^terraform state list", "comment": "List state" },
+            { "pattern": "^terraform state show", "comment": "Show state resource" },
+            { "pattern": "^terraform output", "comment": "Show outputs" },
+            { "pattern": "^terraform version", "comment": "Version info" },
+            { "pattern": "^terraform validate", "comment": "Validate config" },
+            { "pattern": "^terraform fmt", "comment": "Format config" },
+            { "pattern": "^aws .* describe", "comment": "AWS describe operations" },
+            { "pattern": "^aws .* list", "comment": "AWS list operations" },
+            { "pattern": "^aws .* get", "comment": "AWS get operations" },
+            { "pattern": "^aws sts get-caller-identity", "comment": "AWS identity" },
+            { "pattern": "^aws s3 ls", "comment": "List S3 buckets/objects" },
+            { "pattern": "^aws logs ", "comment": "CloudWatch logs" },
+            { "pattern": "^gcloud .* describe", "comment": "GCP describe" },
+            { "pattern": "^gcloud .* list", "comment": "GCP list" },
+            { "pattern": "^gcloud auth list", "comment": "GCP auth" },
+            { "pattern": "^gcloud config list", "comment": "GCP config" },
+            { "pattern": "^gh pr list", "comment": "List PRs" },
+            { "pattern": "^gh pr view", "comment": "View PR" },
+            { "pattern": "^gh pr checks", "comment": "PR checks" },
+            { "pattern": "^gh pr diff", "comment": "PR diff" },
+            { "pattern": "^gh issue list", "comment": "List issues" },
+            { "pattern": "^gh issue view", "comment": "View issue" },
+            { "pattern": "^gh run list", "comment": "List workflow runs" },
+            { "pattern": "^gh run view", "comment": "View workflow run" },
+            { "pattern": "^gh repo view", "comment": "View repo" },
+            { "pattern": "^argocd app list", "comment": "List ArgoCD apps" },
+            { "pattern": "^argocd app get ", "comment": "Get ArgoCD app" },
+            { "pattern": "^argocd app diff ", "comment": "ArgoCD app diff" },
+            { "pattern": "^helm list", "comment": "List Helm releases" },
+            { "pattern": "^helm status ", "comment": "Helm release status" },
+            { "pattern": "^helm history ", "comment": "Helm release history" },
+            { "pattern": "^helm get ", "comment": "Get Helm release info" }
+          ]
+        }
+      }
+    }
+  },
+
+  "skills": {
+    "entries": {
+      "k8s-deploy": { "enabled": true },
+      "k8s-debug": { "enabled": true },
+      "docker-ops": { "enabled": true },
+      "aws-ops": { "enabled": true },
+      "terraform-workflow": { "enabled": true },
+      "incident-response": { "enabled": true },
+      "system-health": { "enabled": true },
+      "log-analysis": { "enabled": true },
+      "argocd-gitops": { "enabled": true },
+      "cost-optimization": { "enabled": true },
+      "git-workflow": { "enabled": true }
+    }
+  },
+
+  "channels": {
+    "telegram": {
+      "enabled": true
+    }
+  }
+}
